@@ -1,0 +1,104 @@
+Microsoft Windows [Version 10.0.22621.1265]
+(c) Microsoft Corporation. All rights reserved.
+C:\Windows\System32>cqlsh
+WARNING: console codepage must be set to cp65001 to support utf-8 encoding on Windows platforms.
+If you experience encoding problems, change your console codepage with 'chcp 65001' before starting cqlsh.
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.14 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+WARNING: pyreadline dependency missing.  Install to enable tab completion.
+
+cqlsh> CREATE KEYSPACE Banking_System WITH replication ={'class':'SimpleStrategy','replication_factor':2};
+
+Warnings :
+Your replication factor 2 for keyspace banking_system is higher than the number of nodes 1
+
+cqlsh> USE Banking_System;
+cqlsh:banking_system> CREATE TABLE customerss (
+                  ... custregno text PRIMARY KEY,
+                  ...  name text,
+                  ... city text,
+                  ... mobileno text,
+                  ... occupation text
+                  ... );
+
+
+cqlsh:banking_system> INSERT INTO customerss (custregno,name, city, mobileno,occupation) VALUES ('1','Radha','erode','9543198345','Team leader');
+cqlsh:banking_system> INSERT INTO customerss (custregno,name, city, mobileno,occupation) VALUES ('2','Ramya','salem','9876532109','Service');
+cqlsh:banking_system> INSERT INTO customerss (custregno,name, city, mobileno,occupation) VALUES ('3','Depika','coimbatore','9765178901','Student');
+
+cqlsh:banking_system> select * from customerss;
+   custregno | city       | mobileno   | name   | occupation
+         -----------+------------+------------+--------+-------------
+         3 | coimbatore | 9765178901 | Depika |     Student
+         2 |      salem | 9876532109 |  Ramya |     Service
+         1 |      erode | 9543198345 |  Radha | Team leader
+
+
+cqlsh:banking_system> CREATE TABLE branch (
+                  ... branchregno text PRIMARY KEY,
+                  ... branchname text,
+                  ... branchcity text,
+                  ... );
+cqlsh:banking_system> INSERT INTO branch (branchregno,branchname,branchcity) VALUES ('b1','BOB','Thindal');
+cqlsh:banking_system> INSERT INTO branch (branchregno,branchname,branchcity) VALUES ('b2','KVB','Salem');
+cqlsh:banking_system>  INSERT INTO branch (branchregno,branchname,branchcity) VALUES('b3','Indian bank','coimbatore');
+
+cqlsh:banking_system> select * from branch;
+
+ branchregno | branchcity | branchname
+-------------+------------+-------------
+          b2 |      Salem |         KVB
+          b1 |    Thindal |         BOB
+          b3 | coimbatore | Indian bank
+
+
+cqlsh:banking_system> CREATE TABLE account   (      acnumber  text PRIMARY KEY, custid  text, bid text, opening_balance text,  atype text, astatus  text);
+cqlsh:banking_system> INSERT INTO account ( acnumber  ,custid ,bid, opening_balance,  atype, astatus) VALUES('ac1','1','b1',’1000’,'Saving','Active');
+cqlsh:banking_system> INSERT INTO account ( acnumber  ,custid ,bid, opening_balance,  atype, astatus) VALUES('ac2','2','b2',’1000’,'Saving','Active');
+cqlsh:banking_system> INSERT INTO account ( acnumber  ,custid ,bid, opening_balance,  atype, astatus) VALUES('ac3','3','b2',’1000’,'Saving','InActive');
+cqlsh:banking_system> select * from account;
+
+ acnumber | astatus  | atype  | bid | custid | opening_balance
+----------+----------+--------+-----+--------+-----------------
+      ac3 | InActive | Saving |  b2 |      3 |            1000
+      ac2 |   Active | Saving |  b2 |      2 |            1000
+      ac1 |   Active | Saving |  b1 |      1 |            1000
+
+(3 rows)
+
+cqlsh:banking_system> CREATE TABLE trandetails    (        tnumber text PRIMARY KEY,  acnumber  text, medium_of_transaction text, transaction_type text, transaction_amount text    );
+cqlsh:banking_system> INSERT INTO trandetails( tnumber,  acnumber  , medium_of_transaction, transaction_type, transaction_amount  ) VALUES('t1','ac1','cash','Deposit',’2000’);
+cqlsh:banking_system> INSERT INTO trandetails( tnumber,  acnumber  , medium_of_transaction, transaction_type, transaction_amount  ) VALUES('t2','ac1','cash','Withdrawal',’1000’);
+
+cqlsh:banking_system> select * from trandetails;
+
+ tnumber | acnumber | medium_of_transaction | transaction_amount | transaction_type
+---------+----------+-----------------------+--------------------+------------------
+      t1 |      ac1 |                  cash |               2000 |          Deposit
+      t2 |      ac1 |                  cash |               1000 |       Withdrawal
+
+(2 rows)
+
+
+cqlsh:banking_system> UPDATE customerss SET Name = 'sri',city = 'tirupur'WHERE custregno = '1';
+
+cqlsh:banking_system>  select * from customerss;
+
+ custregno | city       | mobileno   | name   | occupation
+-----------+------------+------------+--------+-------------
+         3 | coimbatore | 9765178901 | Depika |     Student
+         2 |      salem | 9876532109 |  Ramya |     Service
+         1 |    tirupur | 9543198345 |    sri | Team leader
+
+(3 rows)
+
+
+cqlsh:banking_system>  DELETE FROM trandetails  WHERE  tnumber  =’t1’ ;
+cqlsh:banking_system> select * from trandetails;
+
+ tnumber | acnumber | medium_of_transaction | transaction_amount | transaction_type
+---------+----------+-----------------------+--------------------+------------------
+      t2 |      ac1 |                  cash |               1000 |       Withdrawal
+
+(1 rows)
