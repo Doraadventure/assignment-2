@@ -37,6 +37,60 @@ Database on Casandra and that includes the entity like
  - [x] ACCOUNT  Acnum,custid,bid,opbalance,atype, acstatus 
  - [x] TANSACTION DETAIL tnum,acnum,,transtype,transmedium
 
+**CREATE**
+
+Syntax:
+
+CREATE TABLE tablename(  
+   column1 name datatype PRIMARYKEY,  
+   column2 name data type,  
+   column3 name data type.  
+   ) 
+
+Crated a table where customer uses bank and have a 
+Account in the bank and customer can make transaction
+
+**insert**
+Syntax:
+
+ INSERT INTO <table name>
+(<column1>,<column2>....)
+VALUES (<value1>,<value2>...)
+USING<option>
+
+Inserted into column key and column values
+
+**update**
+Syntax:
+
+UPDATE <table name>
+SET <column name>=<new value>
+<column name>=<value>...
+WHERE <condition>
+
+Updated customer table where the customer changes
+Name and city
+
+
+**read**
+Syntax:
+
+SYNTAX to read the whole table-
+SELECT * FROM <table name>;
+
+**delete**
+
+Syntax:
+
+Syntax of Delete Operation-
+DELETE <identifier> FROM <table name> WHERE <condition>;
+
+Deleted the transaction which is not active
+
+
+
+
+
 
 
 
