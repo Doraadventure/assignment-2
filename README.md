@@ -38,7 +38,9 @@ Database on Casandra and that includes the entity like
  - [x] TANSACTION DETAIL tnum,acnum,,transtype,transmedium
 
 **CREATE**
+Crated a table where customer uses bank and have a 
 
+Account in the bank and customer can make transaction
 Syntax:
 
 CREATE TABLE tablename(  
@@ -47,8 +49,7 @@ CREATE TABLE tablename(
    column3 name data type.  
    ) 
 
-Crated a table where customer uses bank and have a 
-Account in the bank and customer can make transaction
+
 
 **insert**
 Syntax:
