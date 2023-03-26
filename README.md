@@ -1,5 +1,8 @@
 # Column family
-Database used:**cassandra**
+
+![cassandra](https://user-images.githubusercontent.com/122898714/227750508-b3241687-6c73-4749-9a80-3cd8e73f4454.png)
+
+Database used: cassandra
 
 • Cassandra is one of the popular column-family databases
 
@@ -25,4 +28,15 @@ For transactional information, safety means a consistent view of the data regard
 
 Database on Casandra and that includes the entity like
 
- > bank,customer,account,transaction
+ > customer,branch,account,transaction
+ 
+ attributes for the corresponding entity
+
+ - [x] CUSTOMERS Custid,Name,City,Occupation,Dob
+ - [x] BRANCH  Bid,bcity 
+ - [x] ACCOUNT  Acnum,custid,bid,opbalance,atype, acstatus 
+ - [x] TANSACTION DETAIL tnum,acnum,,transtype,transmedium
+
+
+
+
