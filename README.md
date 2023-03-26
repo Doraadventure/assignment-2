@@ -4,15 +4,15 @@
 
 Database used: cassandra
 
-• Cassandra is one of the popular column-family databases
+   Cassandra is one of the popular column-family databases
 
-`Created a Application of banking System `
+`CREATED A APPLICATION FOR BANKING APPLICATION `
 
-There are some kind of safe for which Cassandra could be appropriate.
+   There are some kind of safe for which Cassandra could be appropriate.
 
-Those kinds of safe:
+   Those kinds of safe:
 
-For transactional information, safety means a consistent view of the data regardless of access path. Eventual           consistency is no good when we're dealing with bank balances. Or the other hand, Cassandra would be fine for           logging the transaction details in an audit trail.
+   For transactional information, safety means a consistent view of the data regardless of access path. Eventual  consistency is no good when we're dealing with bank balances. Or the other hand, Cassandra would be fine for logging the transaction details in an audit trail.
 
 # Requreiments
 - Java >= 1.8 (OpenJDK and Oracle JVMS have been tested)
@@ -35,58 +35,62 @@ Database on Casandra and that includes the entity like
  - [x] CUSTOMERS Custid,Name,City,Occupation,Dob
  - [x] BRANCH  Bid,bcity 
  - [x] ACCOUNT  Acnum,custid,bid,opbalance,atype, acstatus 
- - [x] TANSACTION DETAIL tnum,acnum,,transtype,transmedium
+ - [x] TANSACTION DETAIL tnum,acnum,transtype,transmedium
 
 **CREATE**
-Crated a table where customer uses bank and have a 
 
-Account in the bank and customer can make transaction
+Crated a table where customer uses bank and have a  Account in the bank and customer can make transaction
+
 Syntax:
 
-CREATE TABLE tablename(  
-   column1 name datatype PRIMARYKEY,  
-   column2 name data type,  
-   column3 name data type.  
-   ) 
+               CREATE TABLE tablename(  
+               column1 name datatype PRIMARYKEY,  
+               column2 name data type,  
+               column3 name data type.  
+               ) 
 
 
+**INSERT**
 
-**insert**
+Inserted datas into column key and column values
+
 Syntax:
 
- INSERT INTO <table name>
-(<column1>,<column2>....)
-VALUES (<value1>,<value2>...)
-USING<option>
+               INSERT INTO <table name>
+               ( column1 , column2 ....)
+               VALUES ( value1 ,<value2...)
+               USING<option>
 
-Inserted into column key and column values
 
-**update**
-Syntax:
 
-UPDATE <table name>
-SET <column name>=<new value>
-<column name>=<value>...
-WHERE <condition>
+**UPDATE**
 
 Updated customer table where the customer changes
 Name and city
 
-
-**read**
 Syntax:
 
-SYNTAX to read the whole table-
-SELECT * FROM <table name>;
+                UPDATE table name SET column name = new value column name = value...WHERE condition
 
-**delete**
 
-Syntax:
 
-Syntax of Delete Operation-
-DELETE <identifier> FROM <table name> WHERE <condition>;
+
+**READ**
+
+It display the column key ,values for the table
+
+SYNTAX to read the whole table:
+
+              SELECT * FROM table name;
+
+**DELETE**
 
 Deleted the transaction which is not active
+
+
+Syntax of Delete Operation:
+
+              DELETE identifier FROM  table name WHERE condition;
 
 
 
